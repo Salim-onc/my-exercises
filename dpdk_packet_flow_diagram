@@ -1,47 +1,47 @@
-   ┌───────────────────────────────┐
-   │       Physical NIC (Ethernet) │
-   └─────────────┬─────────────────┘
-                 │ Packets arrive
-                 │
-                 ▼
-   ┌───────────────────────────────┐
-   │  rte_eth_dev_configure()      │
-   │  - Setup port, RX/TX queues   │
-   │  - Enable offloads, features  │
-   └─────────────┬─────────────────┘
-                 │
-                 ▼
-   ┌───────────────────────────────┐
-   │  rte_eth_rx_queue_setup()     │
-   │  - Attach RX queues to mbuf   │
-   │    memory pool                │
-   └─────────────┬─────────────────┘
-                 │
-                 ▼
-   ┌───────────────────────────────┐
-   │  rte_eth_dev_start()           │
-   │  - Start the port             │
-   │  - NIC begins receiving       │
-   └─────────────┬─────────────────┘
-                 │
-                 ▼
-   ┌───────────────────────────────┐
-   │  rte_eth_rx_burst()           │
-   │  - Poll RX queue in a loop    │
-   │  - Fetch batch of packets     │
-   │    into mbufs                 │
-   └─────────────┬─────────────────┘
-                 │ Packets ready in user-space
-                 ▼
-   ┌───────────────────────────────┐
-   │  User Application / Processing│
-   │  - Inspect headers (IP/TCP)  │
-   │  - Drop, modify, or forward  │
-   └─────────────┬─────────────────┘
-                 │ Packets to send
-                 ▼
-   ┌───────────────────────────────┐
-   │  rte_eth_tx_burst()           │
-   │  - Send packets back to NIC   │
-   │  - Batch for efficiency       │
-   └───────────────────────────────┘
+   ┌──────────────────────────────────┐
+   │       Physical NIC (Ethernet)    │
+   └──────────────┬───────────────────┘
+                  │ Packets arrive
+                  │
+                  ▼
+   ┌──────────────────────────────────┐
+   │  rte_eth_dev_configure()         │
+   │  - Setup port, RX/TX queues      │
+   │  - Enable offloads, features     │
+   └──────────────┬───────────────────┘
+                  │
+                  ▼
+   ┌──────────────────────────────────┐
+   │  rte_eth_rx_queue_setup()        │
+   │  - Attach RX queues to mbuf      │
+   │    memory pool                   │
+   └──────────────┬───────────────────┘
+                  │
+                  ▼
+   ┌──────────────────────────────────┐
+   │  rte_eth_dev_start()             │
+   │  - Start the port                │
+   │  - NIC begins receiving          │
+   └──────────────┬───────────────────┘
+                  │
+                  ▼
+   ┌──────────────────────────────────┐
+   │  rte_eth_rx_burst()              │
+   │  - Poll RX queue in a loop       │
+   │  - Fetch batch of packets        │
+   │    into mbufs                    │
+   └──────────────┬───────────────────┘
+                  │ Packets ready in user-space
+                  ▼
+   ┌──────────────────────────────────┐
+   │  User Application / Processing   │
+   │  - Inspect headers (IP/TCP)      │
+   │  - Drop, modify, or forward      │
+   └──────────────┬───────────────────┘
+                  │ Packets to send
+                  ▼
+   ┌──────────────────────────────────┐
+   │  rte_eth_tx_burst()              │
+   │  - Send packets back to NIC      │
+   │  - Batch for efficiency          │
+   └──────────────────────────────────┘
