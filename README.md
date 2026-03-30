@@ -1,2 +1,2 @@
 # my-exercises
-My exercises which I do or not do
+My c coding exercises which I use for practise
