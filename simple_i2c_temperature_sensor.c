@@ -1,3 +1,7 @@
+// A simple I2C temperature sensor  *
+// This is a model driver for temperaure sensor
+// Need to tweak accordingly for real driver implementation
+
 #include <linux/module.h>
 #include <linux/i2c.h>
 #include <linux/slab.h>
